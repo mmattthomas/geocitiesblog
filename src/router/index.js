@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import SignIn from '../components/SignIn'
-import Signup from '../components/Signup'
+import Signup from '../components/SignUp'
 import CreateUrl from '../components/CreateUrl'
 
 Vue.use(Router)
@@ -32,7 +32,7 @@ let router = new Router({
     },
     {
       path: '/sign-up',
-      name: 'Signup',
+      name: 'SignUp',
       component: Signup
     }
 	],
