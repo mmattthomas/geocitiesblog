@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "author": "Matt Thomas <mmattthomas@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=8.9" 
+  },
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
