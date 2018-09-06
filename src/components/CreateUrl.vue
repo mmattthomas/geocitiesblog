@@ -63,7 +63,7 @@ export default {
       urls:[],
       url:null,
 			fireUrls:null,
-			fireHoods:null,
+			fireHoods:[],
       editingURL:[],
       editFormMode:[]
     }

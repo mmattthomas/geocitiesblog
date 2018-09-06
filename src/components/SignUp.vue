@@ -43,7 +43,7 @@
 </template>
 <script>
 export default {
-  name: "Signup",
+  name: "SignUp",
   data() {
     return {
       formData: {
@@ -55,33 +55,27 @@ export default {
   },
   methods: {
     signUp() {
-      console.log("[5] beginning signup");
+      console.log("[5] beginning signup");      
       firebase
         .auth()
         .createUserWithEmailAndPassword(
           this.formData.email,
           this.formData.password
-        )
-        .then(function() {
-          this.$router.replace('/new')
-        })
-        // .then(user => {         
-          // console.log("[4] signup success.  updating profile now");
-          // user.updateProfile({            
-          //   displayName: this.formData.name
-          // }).then(function() {
-          //   //success
-          //   this.$router.replace("/new")
-          // }).catch(e2 => {
-          //   //error with userProfile update:
-          //   this.errMesage = "Error updating profile with name: " + e2.message            
-          // })})
-        .catch(e => {
+        ).then(user => {
+          if (!this) {
+            alert('lost this!');
+          } else {
+            if (this.$router) {
+              this.$router.replace('/new')
+            } else {
+              this.errMessage = "router is undefined?"
+            }
+          }
+        }).catch(e => {
           this.errMessage = "Error with signing up: " + e.message          
         });
     },
-     resetForm() {
-      //this.formData.name = ""
+    resetForm() {
       this.formData.email = ""
       this.formData.password = ""
       this.errMessage = ""

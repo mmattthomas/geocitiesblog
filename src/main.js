@@ -11,6 +11,7 @@ Vue.config.productionTip = false
 // research later:
 let app;
 
+// Per the web, this is okay to expose publicly, since Firebase handles user authentication on its own
 var fbConfig = {
   apiKey: "AIzaSyBKkqPd__BF-jKHnmdsGJN_mRE2jRyyhmk",
   authDomain: "geocities-url-maker.firebaseapp.com",
