@@ -5,7 +5,7 @@
   "author": "Matt Thomas <mmattthomas@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=8.9" 
+    "node": "8.9.1" 
   },
   "private": true,
   "scripts": {
