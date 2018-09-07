@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import SignIn from '../components/SignIn'
 import SignUp from '../components/SignUp'
 import CreateUrl from '../components/CreateUrl'
+import Splash from '../components/Splash'
 
 Vue.use(Router)
 
@@ -11,7 +12,9 @@ let router = new Router({
   routes: [
 		{
 			path: '/:street/:address',
-			name: 'GoTo'
+			name: 'Splash',
+			component: Splash,
+			props: true
 		},
     {
       path: '/new',
@@ -45,20 +48,17 @@ router.beforeEach((to,from,next) => {
 
 	// check if address/street - need to redirect
 	if (to.params.street && to.params.address) {
-		const redirectTo = getRedirect(to)
-		if (redirectTo) {
-			window.location = redirectTo
-			//alert('going to: ' + redirectTo)
-		}		
+		// if contains these params - then follow thru to Splash Route
+		next()	
+	} else {
+		// otherwise regular in the app
+		let currentUser=firebase.auth().currentUser;
+		let requiresAuth=to.matched.some(record=>record.meta.requiresAuth);
+		console.log("in beforeEach()")
+		if(requiresAuth && !currentUser) next('sign-in')
+		else if (!requiresAuth && currentUser) next('new')
+		else next()
 	}
-
-	// otherwise regular in the app
-  let currentUser=firebase.auth().currentUser;
-  let requiresAuth=to.matched.some(record=>record.meta.requiresAuth);
-
-  if(requiresAuth && !currentUser) next('sign-in')
-  else if (!requiresAuth && currentUser) next('new')
-  else next()
 });
 
 function getRedirect(route) {

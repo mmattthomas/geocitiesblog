@@ -1,42 +1,48 @@
 <template>
 	<div class="row">
-		<div class=" col-md-6 col-md-offset-3">
-			<h4 style="text-align:center">GEOCITIES</h4>
-			<div class="form-horizontal" role="form">
-				<div class="form-group">
-					<label for="url" class="col-sm-3 control-label">
-						URL</label>
-					<div class="col-sm-9">
-						<input type="text" ref="url" class="form-control" id="url" v-model="formData.url" placeholder="https://www.chumbawumba.com/whiskeydrink" required="true">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="neighborhood" class="col-sm-3 control-label">
-						Neighborhood
-					</label>
-					<div class="col-sm-9">						
-						<v-select :options="fireHoods" ref="neighborhood" v-model="formData.neighborhood"></v-select>
-					</div>					
-				</div>
-				<div class="form-group last">
-					<div class="col-sm-offset-3 col-sm-9">
-						<button @click="makeURL" class="btn btn-success btn-sm">
-							Create URL
-						</button>                
-					</div>
-				</div>                 					
-			<br><br><br>
-				<ul>
-					<li v-for="(url,key) in fireUrls" :key=key >
-						<div>
-							<h2>
-								<a :href="url.url">{{ baseUrl + "/" + url.neighborhood + "/" + url.streetnum }} </a>
-							</h2>
-							<h5>{{ url.url }}</h5>
-							<button class="btn btn-xs btn-danger" @click='deleteURL(key);'>Delete</button> 							
+		<div class=" col-md-10 col-md-offset-1">
+			<div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>CREATE A SHORT URL HERE</strong>
+        </div>
+        <div class="panel-body">			
+					<div class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="url" class="col-sm-3 control-label">
+								URL</label>
+							<div class="col-sm-9">
+								<input type="text" ref="url" class="form-control" id="url" v-model="formData.url" placeholder="https://www.chumbawumba.com/whiskeydrink" required="true">
+							</div>
 						</div>
-					</li>          
-				</ul>
+						<div class="form-group">
+							<label for="neighborhood" class="col-sm-3 control-label">
+								Neighborhood
+							</label>
+							<div class="col-sm-9">						
+								<v-select :options="fireHoods" ref="neighborhood" v-model="formData.neighborhood"></v-select>
+							</div>					
+						</div>
+						<div class="form-group last">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button @click="makeURL" class="btn btn-success btn-sm">
+									Create URL
+								</button>                
+							</div>
+						</div>                 					
+					<br><br><br>
+						<ul>
+							<li v-for="(url,key) in fireUrls" :key=key >
+								<div>
+									<h2>
+										<a :href="url.url">{{ baseUrl + "/" + url.neighborhood + "/" + url.streetnum }} </a>
+									</h2>
+									<h5>{{ url.url }}</h5>
+									<button class="btn btn-xs btn-danger" @click='deleteURL(key);'>Delete</button> 							
+								</div>
+							</li>          
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>     

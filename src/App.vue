@@ -55,14 +55,10 @@ export default {
 </script>
 
 <style>
-/* body { 
- background: url('./assets/noodle.png') no-repeat center center fixed; 
- -webkit-background-size: cover;
- -moz-background-size: cover;
- -o-background-size: cover;
- background-size: cover;
-} */
-
+	body {
+    background-image: url("./assets/blinkstars.gif");
+    background-repeat: repeat;
+	}
 .panel-default {
  opacity: 0.9;
  margin-top:30px;
