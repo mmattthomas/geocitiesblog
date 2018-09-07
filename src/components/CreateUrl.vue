@@ -56,7 +56,7 @@ export default {
   //name: 'CreateUrl',
   data () {
     return {
-			baseUrl: "http://www.geocities.blog",
+			baseUrl: "http://geocities.blog",
 			formData: {
 				url: "",
 				neighborhood: "",
