@@ -11,6 +11,12 @@
           <a @click="logout"> Logout</a>
           <a href="#">{{authUser.identifier}}</a>
        </li>
+       <li v-if="authUser">
+          <router-link to="/new">Create a new URL</router-link>
+       </li>
+       <li>
+         <router-link to="/about">About</router-link>
+       </li>
       </ul>
     </div>
 
@@ -55,26 +61,29 @@ export default {
 </script>
 
 <style>
+  li {
+    font-weight: bolder
+  }
 	body {
     background-image: url("./assets/blinkstars.gif");
     background-repeat: repeat;
 	}
-.panel-default {
- opacity: 0.9;
- margin-top:30px;
-}
-.form-group.last {
- margin-bottom:0px;
-}
+  .panel-default {
+  opacity: 0.9;
+  margin-top:30px;
+  }
+  .form-group.last {
+  margin-bottom:0px;
+  }
 
-a {
-  cursor: pointer;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
-}
+  a {
+    cursor: pointer;
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* text-align: center; */
+    color: #2c3e50;
+  }
 </style>
