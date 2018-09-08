@@ -8,6 +8,9 @@
             If you create an account, you can create links based on the original "Neighborhoods" that Geocities was known for.
             Unfortunately I could not procure the "geocities.com" domain (nor the geocities.yahoo.com domain)... so it really is 
             a half-baked ieda.
+            <br>
+            <br>
+            <a href="https://github.com/mmattthomas/geocitiesblog"><i class="fab fa-github-square"></i> Find the source here</a>
         </div>
       </div>
     </div>

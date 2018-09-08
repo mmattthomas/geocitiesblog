@@ -18,11 +18,11 @@
               <label for="inputPassword3" class="col-sm-3 control-label">
                 Password</label>
               <div class="col-sm-9">
-                <input type="password" class="form-control" id="inputPassword3" v-model="formData.password" placeholder="Password" required="">
+                <input type="password" class="form-control" id="inputPassword3" v-model="formData.password" placeholder="Password" required="" v-on:keyup.enter="signUp">
               </div>
             </div>
             <div class="form-group last">
-              <div class="col-sm-offset-3 col-sm-9">
+              <div class="col-sm-offset-3 col-sm-9" style="text-align:right">
                 <button @click="signUp" class="btn btn-success btn-sm">
                   Sign Up</button>
                 <button @click="resetForm" class="btn btn-default btn-sm">

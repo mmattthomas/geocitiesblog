@@ -1,16 +1,24 @@
 <template>
-	<!-- <div class="jumbotron" :style="{'background-image': `url(${require('../assets/blinkstars.gif')})`}"> -->
 	<div class="row">
 		<div class=" col-md-6 col-md-offset-3">
-			<h3 style="text-align:center">LOADING...</h3>
-			<img src="../assets/under-construction.gif" alt="YOUR WEB PAGE IS LOADING SOON">			
+			<span v-if="!error">
+				<h3 style="text-align:center">LOADING YOUR WEBPAGE IN 3...2...1...</h3>
+				<img src="../assets/under-construction.gif" alt="YOUR WEB PAGE IS LOADING SOON">			
+			</span>
+			<span v-if="error">
+				<img src="../assets/404.png" alt="I CANNOT FIND THIS PAGE">
+			</span>
 		</div>
 	</div>
-	<!-- </div> -->
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			error: false
+		}
+	},
 	props: ['street', 'address'],
 	methods: {
 		redirectMe() {
@@ -31,7 +39,8 @@ export default {
 
 			} else {
 				console.log("url not found")
-				//TBD: send to Not Found URL
+				//TBD: enable div with error picture
+				this.error = true
 			}
 			})
 		}

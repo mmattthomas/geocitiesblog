@@ -18,19 +18,17 @@
               <label for="inputPassword3" class="col-sm-3 control-label">
                 Password</label>
               <div class="col-sm-9">
-                <input type="password" class="form-control" id="inputPassword3" v-model="formData.password" placeholder="Password" required="">
+                <input type="password" class="form-control" id="inputPassword3" v-model="formData.password" placeholder="Password" required="" v-on:keyup.enter="signIn">
               </div>
             </div>
             <div class="form-group last">
-              <div class="col-sm-offset-3 col-sm-9">
-                <button @click.prevent="signIn" class="btn btn-success btn-sm">
-                  Sign in</button>
-                <button @click="resetForm" class="btn btn-default btn-sm">
-                  Reset</button>
+              <div class="col-sm-offset-3 col-sm-9" style="text-align:right">
+                <button @click="signIn" class="btn btn-success btn-sm">Sign in</button>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="panel-footer">
           Not Registered? <a href="/sign-up">Register here</a>
         </div>

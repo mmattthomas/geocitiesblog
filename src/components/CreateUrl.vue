@@ -31,7 +31,7 @@
 						</div>                 					
 					<br><br><br>
 						<ul>
-							<li v-for="(url,key) in fireUrls" :key=key >
+							<li v-for="(url,key) in fireUrlsArray.slice().reverse()" :key="key" >
 								<div>
 									<h2>
 										<a :href="url.url">{{ baseUrl + "/" + url.neighborhood + "/" + url.streetnum }} </a>
@@ -69,6 +69,7 @@ export default {
       urls:[],
       url:null,
 			fireUrls:null,
+			fireUrlsArray:[],
 			fireHoods:[],
       editingURL:[],
       editFormMode:[]
@@ -89,9 +90,7 @@ export default {
 					if (hoodSearchResult) {
 						const hoodKey = Object.keys(hoodSearchResult)[0];
 						const hood = hoodSearchResult[hoodKey]
-						if (dbg) console.log("found : " + JSON.stringify(hood))
 						
-						// create new:
 						hood.nextStreet++
 						this.formData.streetnum = hood.nextStreet
 						this.formData.index = this.formData.neighborhood + this.formData.streetnum
@@ -100,8 +99,7 @@ export default {
 						this.url = this.formData
 						this.urls.push(this.url)
 						
-						// create url					
-						
+						// create url											
 						firebase.database().ref('urls').push(this.formData)
 						.then((data) => {
 							if (dbg) console.log("pushed a URL with street: " + hood.nextStreet)							
@@ -133,10 +131,11 @@ export default {
 		fetchFirebaseData(){
 			const currUser = firebase.auth().currentUser.uid;
 			firebase.database().ref('urls').orderByChild('owner').equalTo(currUser).on('value',(snapshot)=>{
-					this.fireUrls=snapshot.val();
+					//this.fireUrls=snapshot.val();
+					this.fireUrlsArray = snapshotToArray(snapshot)
 			});
 			firebase.database().ref('hoods').on('value',(snapshot)=>{
-					this.fireHoods = snapshotToArray(snapshot)				
+					this.fireHoods = snapshotToArrayHoods(snapshot)				
 			});
 		}
 	},
@@ -145,13 +144,26 @@ export default {
 	}
 }
 
-function snapshotToArray(snapshot) {
+function snapshotToArrayHoods(snapshot) {
     var returnArr = [];
 
     snapshot.forEach(function(childSnapshot) {
         var item = childSnapshot.val();
         item.key = childSnapshot.key;				
 				returnArr.push(item.name);
+				
+    });
+
+    return returnArr;
+};
+
+function snapshotToArray(snapshot) {
+    var returnArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;				
+				returnArr.push(item);
 				
     });
 
